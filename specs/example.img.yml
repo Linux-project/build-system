@@ -1,4 +1,4 @@
 disk:
-        name: "example.img"
-        size: 10G
+        name: "tiny.img"
+        size: 6G
         format: raw
