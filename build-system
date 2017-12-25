@@ -26,4 +26,9 @@ GetOptions(
     "version" => \$version,
 ) or die("Wrong set of command line arguments were passed\n");
 
+if ($spec eq '') {
+    print STDERR "Error: specification must be provided\n";
+    exit 1;
+}
+
 exit 0;
