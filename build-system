@@ -14,10 +14,16 @@ use Getopt::Long;
 require "./scripts/disk.pm";
 
 # path to specification
-my $spec = "";
+my $spec = '';
+
+# help and version flags
+my $help = '';
+my $version = '';
 
 GetOptions(
     "spec=s" => \$spec,
+    "help" => \$help,
+    "version" => \$version,
 ) or die("Wrong set of command line arguments were passed\n");
 
 exit 0;
