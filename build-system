@@ -1,0 +1,23 @@
+#!/usr/bin/env perl
+#
+# The build-system is Copyright (C) 2017 Alexander Kuleshov <kuleshovmail@gmail.com>,
+#
+# Github: https://github.com/0xAX/kernel-dev/tree/master/kernel-testing
+
+use strict;
+use warnings "all";
+use diagnostics;
+
+use YAML;
+use Getopt::Long;
+
+require "./scripts/disk.pm";
+
+# path to specification
+my $spec = "";
+
+GetOptions(
+    "spec=s" => \$spec,
+) or die("Wrong set of command line arguments were passed\n");
+
+exit 0;
