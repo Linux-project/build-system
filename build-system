@@ -13,8 +13,10 @@ use Getopt::Long;
 
 require "./scripts/disk.pm";
 
-# path to specification
+# specification file that will be processed
 my $spec = '';
+# specification content
+my $spec_data = '';
 
 # help and version flags
 my $help = '';
@@ -23,12 +25,20 @@ my $version = '';
 GetOptions(
     "spec=s" => \$spec,
     "help" => \$help,
-    "version" => \$version,
-) or die("Wrong set of command line arguments were passed\n");
+    "version" => \$version)
+    or die("Wrong set of command line arguments were passed\n");
 
 if ($spec eq '') {
     print STDERR "Error: specification must be provided\n";
     exit 1;
 }
+
+open(my $spec_fd, "<", $spec)
+    or die("Error: can't read given specification - $!");
+
+$spec_data = do {local $/; <$spec_fd>};
+
+close($spec_fd)
+    or warn "Error: can't close specification file - $!";
 
 exit 0;
