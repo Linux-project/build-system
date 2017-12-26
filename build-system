@@ -9,6 +9,7 @@ use warnings "all";
 use diagnostics;
 
 use YAML;
+use Data::Dumper;
 use Getopt::Long;
 
 require "./scripts/disk.pm";
@@ -37,6 +38,8 @@ open(my $spec_fd, "<", $spec)
     or die("Error: can't read given specification - $!");
 
 $spec_data = do {local $/; <$spec_fd>};
+
+$spec_data = YAML::Load($spec_data);
 
 close($spec_fd)
     or warn "Error: can't close specification file - $!";
