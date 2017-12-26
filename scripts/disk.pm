@@ -74,6 +74,8 @@ sub init_disk() {
             print STDERR "  qemu-img create -f $image_format " . $image_dir . "/" . $image_name . " $image_size\n";
             exit $exit_status;
         }
+
+        print "[info] raw image created: " . $image_dir . "/" . $image_name . "\n";
     }
 
     return ($image_dir, $image_dir . "/" . $image_name);
