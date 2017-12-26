@@ -16,4 +16,5 @@ we may use `perl -e` during checking command line options here.
 
 ## Documentation
 
+  * Provide info how to install dependencies for different platforms (Perl-Yaml and etc..)
   * add some docs to describe yaml fields.
