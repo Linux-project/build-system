@@ -1,3 +1,11 @@
+# build-system
+
+The `build-system` is a perl script to build linux kernel and minimal environment to test it in qemu.
+
+## Usage
+
+TODO
+
 ## Dependencies
 
   * [perl](https://www.perl.org/)
