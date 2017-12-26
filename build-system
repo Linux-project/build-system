@@ -26,6 +26,11 @@ my $spec_data = '';
 my $help = '';
 my $version = '';
 
+# path to directory with image
+my $img_dir = '';
+# path to image
+my $image = '';
+
 GetOptions(
     "spec=s" => \$spec,
     "help" => \$help,
@@ -37,7 +42,8 @@ if ($spec eq '') {
     exit 1;
 }
 
-create_output_dir(OUTPUT_DIR);
+# create directory for output images if it is not exists
+create_dir_if_not_exists(OUTPUT_DIR);
 
 open(my $spec_fd, "<", $spec)
     or die("Error: can't read given specification - $!");
@@ -45,6 +51,8 @@ open(my $spec_fd, "<", $spec)
 $spec_data = do {local $/; <$spec_fd>};
 
 $spec_data = YAML::Load($spec_data);
+
+($img_dir, $image) = init_disk($spec_data, $spec, OUTPUT_DIR);
 
 close($spec_fd)
     or warn "Error: can't close specification file - $!";

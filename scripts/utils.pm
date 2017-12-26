@@ -10,11 +10,11 @@ use diagnostics;
 
 use File::Path qw(make_path);
 
-sub create_output_dir() {
-    my $output_dir = shift;
+sub create_dir_if_not_exists() {
+    my $dir = shift;
 
-    if (! -e $output_dir and ! -d $output_dir) {
-        make_path($output_dir);
+    if (! -e $dir and ! -d $dir) {
+        make_path($dir);
     }    
 }
 
