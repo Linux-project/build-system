@@ -1,4 +1,7 @@
+kernel:
+initrd:
 disk:
         name: "tiny.img"
         size: 6G
         format: raw
+bootloader:
