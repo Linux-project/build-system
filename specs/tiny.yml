@@ -1,8 +1,11 @@
 disk:
-        name: "tiny.img"
-        size: 6G
-        format: raw
+  name: "tiny.img"
+  size: 6G
+  format: raw
 partitions:
+  - /
+  - /boot
+  - /home
 kernel:
 initrd:
 bootloader:
