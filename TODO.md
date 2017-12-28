@@ -6,6 +6,7 @@
   * Build defconfig kernel
   * Build RT kernel
   * Build linux-next
+  * Build linux kernel with dtrace support
 
 ## build-system
 
@@ -14,6 +15,7 @@
   * support `--build-disk` and other `yml` based fields.
 we may use `perl -e` during checking command line options here.
   * support `-o/--output-dir` command line option;
+  * provide `--update-cofnigs` options to update `kernel-configs`.
 
 ## Documentation
 
