@@ -16,6 +16,7 @@ use constant OUTPUT_DIR => "./_output";
 
 require "./scripts/disk.pm";
 require "./scripts/utils.pm";
+require "./scripts/partitions.pm";
 
 # specification file that will be processed
 my $spec = '';
@@ -52,7 +53,15 @@ $spec_data = do {local $/; <$spec_fd>};
 
 $spec_data = YAML::Load($spec_data);
 
+#
+# create new disk if need
+#
 ($img_dir, $image) = init_disk($spec_data, $spec, OUTPUT_DIR);
+
+if (is_disk_partitioned($image)) {
+    print STDERR "Error: disk $image is already partitioned. Try another.\n";
+    exit 1;
+}
 
 close($spec_fd)
     or warn "Error: can't close specification file - $!";
