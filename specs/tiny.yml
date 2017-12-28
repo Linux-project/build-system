@@ -3,9 +3,13 @@ disk:
   size: 6G
   format: raw
 partitions:
-  - /
-  - /boot
-  - /home
+  - mountPoint: /boot
+    bootable: true
+    size: 1G
+  - mountPoint: /
+    size: 5G
+  - mountPoint: /home
+    size: 4G
 kernel:
 initrd:
 bootloader:
