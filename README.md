@@ -10,7 +10,7 @@ TODO
 
   * [perl](https://www.perl.org/)
   * [qemu](https://www.qemu.org/)
-  * [util-linux](https://github.com/karelzak/util-linux)
+  * [sfdisk](https://linux.die.net/man/8/sfdisk)
 
 Perl libraries:
 
