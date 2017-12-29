@@ -9,6 +9,7 @@ use warnings "all";
 use diagnostics;
 
 use Data::UUID;
+use Data::Dumper;
 use File::Basename;
 
 # Global exit status

@@ -1,15 +1,18 @@
 disk:
   name: "tiny.img"
-  size: 6G
+  size: 10G
   format: raw
 partitions:
   - mountPoint: /boot
     bootable: true
-    size: 1G
+    size: 1GB
+    type: 0c
   - mountPoint: /
-    size: 5G
+    size: 5GB
+    type: 83
   - mountPoint: /home
-    size: 4G
+    size: 4GB
+    type: 83
 kernel:
 initrd:
 bootloader:
