@@ -10,12 +10,18 @@
 
 ## build-system
 
+  * add `-d,--debug` and print `Content of part file` if it was passed.
   * add `-v/--verbose`
   * add `--no-color`
   * support `--build-disk` and other `yml` based fields.
 we may use `perl -e` during checking command line options here.
   * support `-o/--output-dir` command line option;
   * provide `--update-cofnigs` options to update `kernel-configs`.
+
+## partitions
+
+  * Exit if bootable flag is not set.
+  * support for GPT partitions
 
 ## Documentation
 
