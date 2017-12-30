@@ -74,6 +74,13 @@ if (is_disk_partitioned($image) == 1) {
 #
 make_fs($spec_data, $image);
 
+#
+# delete loop devices
+#
+my $loop_devices = `losetup`;
+
+print $loop_devices;
+
 close($spec_fd)
     or warn "Error: can't close specification file - $!";
 
