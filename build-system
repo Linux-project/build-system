@@ -69,6 +69,11 @@ if (is_disk_partitioned($image) == 1) {
     $partitions_spec = create_partitions($spec_data, $image);
 }
 
+#
+# format partitions with the given filesystems
+#
+make_fs($spec_data, $image);
+
 close($spec_fd)
     or warn "Error: can't close specification file - $!";
 
