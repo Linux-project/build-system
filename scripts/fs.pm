@@ -7,8 +7,8 @@
 use Data::Dumper;
 
 sub make_fs {
-    $config = shift;
-    $image = shift;
+    my $config = shift;
+    my $image = shift;
 
     my $disk_info = `sfdisk -d $image`;
     my @partitions = ($disk_info =~ /start\=\s+([0-9]*),/g);
