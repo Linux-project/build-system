@@ -50,11 +50,12 @@ if ($spec eq '') {
 # create directory for output images if it is not exists
 create_dir_if_not_exists(OUTPUT_DIR);
 
+# open and read full specification file
 open(my $spec_fd, "<", $spec)
     or die("Error: can't read given specification - $!");
-
 $spec_data = do {local $/; <$spec_fd>};
 
+# load and parse yaml specification
 $spec_data = YAML::Load($spec_data);
 
 #
@@ -85,6 +86,7 @@ if ($ret == -1) {
 #
 delete_loop_devices($image);
 
+# close specification file
 close($spec_fd)
     or warn "Error: can't close specification file - $!";
 
