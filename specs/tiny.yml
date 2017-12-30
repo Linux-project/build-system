@@ -7,12 +7,22 @@ partitions:
     bootable: true
     size: 1GB
     type: 0c
+    fs:
+    - name: fat32
+    - format_util: mkfs.vfat
+    - format_util_opts: -F 23
   - mountPoint: /
     size: 5GB
     type: 83
+    fs:
+    - name: ext4
+    - format_util: mkfs.ext4
   - mountPoint: /home
     size: 4GB
     type: 83
+    fs:
+    - name: ext4
+    - format_util: mkfs.ext4
 kernel:
 initrd:
 bootloader:
