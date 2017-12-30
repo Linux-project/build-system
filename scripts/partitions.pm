@@ -64,6 +64,11 @@ sub create_partitions() {
 
     print "[info] Creating partitions...\n";
 
+    # delete partition specification if it is already exists
+    if (-e $partition_spec) {
+        unlink $partition_spec;
+    }
+
     # create tmp files with partitions list
     open my $part_fd, '+>>', $partition_spec
         or die("Error: can't create spec file for partitions");
@@ -119,7 +124,6 @@ sub create_partitions() {
     }
 
     close($part_fd);
-    unlink $partition_spec;
 
     return $partition_spec;
 }
