@@ -34,7 +34,7 @@ my $image = '';
 # path to partitions specification
 my $partitions_spec = '';
 # result from some specific routines
-my $ret = 1;
+my $mount_points;
 
 GetOptions(
     "spec=s" => \$spec,
@@ -75,8 +75,8 @@ if (is_disk_partitioned($image) == 1) {
 #
 # format partitions with the given filesystems
 #
-$ret = make_fs($spec_data, $image);
-if ($ret == -1) {
+$mount_points = make_fs($spec_data, $image);
+if ($mount_points == -1) {
     delete_loop_devices($image);
     exit 1;
 }
