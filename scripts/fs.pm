@@ -21,9 +21,11 @@ sub make_fs {
         if ($ret != 0) {
             print STDERR "[error] during losetup $Loop_device $image -o $_\n";
             print STDERR "Do not forget delete already created loop devices\n";
-            exit 1;
+            return -1;
         }
     }
+
+    return 1;
 }
 
 1;

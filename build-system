@@ -33,6 +33,8 @@ my $img_dir = '';
 my $image = '';
 # path to partitions specification
 my $partitions_spec = '';
+# result from some specific routines
+my $ret = 1;
 
 GetOptions(
     "spec=s" => \$spec,
@@ -72,14 +74,16 @@ if (is_disk_partitioned($image) == 1) {
 #
 # format partitions with the given filesystems
 #
-make_fs($spec_data, $image);
+$ret = make_fs($spec_data, $image);
+if ($ret == -1) {
+    delete_loop_devices($image);
+    exit 1;
+}
 
 #
 # delete loop devices
 #
-my $loop_devices = `losetup`;
-
-print $loop_devices;
+delete_loop_devices($image);
 
 close($spec_fd)
     or warn "Error: can't close specification file - $!";
