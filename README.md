@@ -11,6 +11,7 @@ TODO
   * [perl](https://www.perl.org/)
   * [qemu](https://www.qemu.org/)
   * [sfdisk](https://linux.die.net/man/8/sfdisk)
+  * [losetup](https://linux.die.net/man/8/losetup)
 
 Perl libraries:
 
