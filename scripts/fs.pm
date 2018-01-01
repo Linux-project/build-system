@@ -16,6 +16,9 @@ sub make_fs {
     my @partitions = ($disk_info =~ /start\=\s+([0-9]*),/g);
 
     foreach (@partitions) {
+        my $fs = $config->{partitions}[$idx]->{fs}[0];
+        my $makefs_util = $fs->{format_util};
+        my $makefs_opts = $fs->{format_util_opts};
         my $mount_point = $config->{partitions}[$idx]->{mountPoint};
         my $loop_device = `losetup -f`;
         $loop_device =~ tr/\r\n//d;
@@ -27,8 +30,25 @@ sub make_fs {
             return -1;
         }
 
-        $mount_points{$mount_point} = $loop_device;
+        print "[info] formating $mount_point to $fs->{name}\n";
+        if (!defined($makefs_opts)) {
+            $_ = `$makefs_util $loop_device >/dev/null 2>&1`;
+        } else {
+            $_ = `$makefs_util $makefs_opts $loop_device >/dev/null 2>&1`;
+        }
 
+        if ($? != 0) {
+            print STDERR "[error] during formating of a partition\n";
+            print STDERR "Try to execute manually:";
+            if (!defined($makefs_opts)) {
+                print STDERR "$makefs_util $loop_device";
+            } else {
+                print STDERR "$makefs_util $makefs_opts $loop_device";
+            }
+            return -1;
+        }
+
+        $mount_points{$mount_point} = $loop_device;
         $idx++;
     }
 
