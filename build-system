@@ -47,6 +47,11 @@ if ($spec eq '') {
     exit 1;
 }
 
+if ($< != 0) {
+    print STDERR "Error: run build-sytem script as administartor\n";
+    exit 1;
+}
+
 # create directory for output images if it is not exists
 create_dir_if_not_exists(OUTPUT_DIR);
 
