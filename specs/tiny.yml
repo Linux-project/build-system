@@ -10,7 +10,7 @@ partitions:
     fs:
       - name: fat32
         format_util: mkfs.vfat
-        format_util_opts: -F 23
+        format_util_opts: -F 32
   - mountPoint: /
     size: 5GB
     type: 83
