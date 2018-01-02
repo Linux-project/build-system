@@ -11,11 +11,15 @@ sub mount_partitions {
     my $image = shift;
     my $partitions = shift;
     my %partitions = %{$partitions};
+    my $image_name = basename($image);
+    my $root_dir = dirname($image);
 
     if (!defined($partitions{'/'})) {
         print STDERR "[error] no root partition found\n";
         return -1;
     }
+
+    mkdir(dirname($image) . "/$image_name-root");
 
     #
     # TODO mount root directory
@@ -26,7 +30,7 @@ sub mount_partitions {
     #
 
     # TODO return path to root
-    return 1;
+    return $root_dir . "/$image_name-root";
 }
 
 1;

@@ -11,6 +11,7 @@ use diagnostics;
 use YAML;
 use Data::Dumper;
 use Getopt::Long;
+use Scalar::Util qw(looks_like_number);
 
 use constant OUTPUT_DIR => "./_output";
 
@@ -35,7 +36,9 @@ my $image = '';
 # path to partitions specification
 my $partitions_spec = '';
 # result from some specific routines
-my $mount_points;
+my $mount_points = '';
+# path to root dir of a created disk
+my $root_dir = '';
 
 GetOptions(
     "spec=s" => \$spec,
@@ -90,7 +93,8 @@ if ($mount_points == -1) {
 #
 # mount given partitions
 #
-if (mount_partitions($spec_data, $image, $mount_points) == -1) {
+$root_dir = mount_partitions($spec_data, $image, $mount_points);
+if (looks_like_number($root_dir)) {
     delete_loop_devices($image);
     exit 1;
 }
