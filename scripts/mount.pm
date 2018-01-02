@@ -10,6 +10,14 @@ sub mount_partitions {
     my $config = shift;
     my $image = shift;
     my $partitions = shift;
+    my %partitions = %{$partitions};
+
+    if (!defined($partitions{'/'})) {
+        print STDERR "[error] no root partition found\n";
+        return -1;
+    }
+
+    return 1;
 }
 
 1;
