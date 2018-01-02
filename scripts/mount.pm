@@ -17,6 +17,15 @@ sub mount_partitions {
         return -1;
     }
 
+    #
+    # TODO mount root directory
+    #
+
+    #
+    # TODO mount other dirs
+    #
+
+    # TODO return path to root
     return 1;
 }
 
