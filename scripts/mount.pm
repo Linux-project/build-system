@@ -4,4 +4,12 @@
 #
 # Github: https://github.com/0xAX/kernel-dev/tree/master/kernel-testing
 
+use Data::Dumper;
+
+sub mount_partitions {
+    my $config = shift;
+    my $image = shift;
+    my $partitions = shift;
+}
+
 1;

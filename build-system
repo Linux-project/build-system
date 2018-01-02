@@ -88,6 +88,11 @@ if ($mount_points == -1) {
 }
 
 #
+# mount given partitions
+#
+mount_partitions($spec_data, $image, $mount_points);
+
+#
 # delete loop devices
 #
 delete_loop_devices($image);
