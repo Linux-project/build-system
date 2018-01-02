@@ -17,6 +17,7 @@ use constant OUTPUT_DIR => "./_output";
 require "./scripts/disk.pm";
 require "./scripts/partitions.pm";
 require "./scripts/fs.pm";
+require "./scripts/mount.pm";
 require "./scripts/utils.pm";
 
 # specification file that will be processed
