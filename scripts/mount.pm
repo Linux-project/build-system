@@ -19,11 +19,17 @@ sub mount_partitions {
         return -1;
     }
 
+    my $root_device = $partitions{'/'};
+
+    # create root directory
     mkdir(dirname($image) . "/$image_name-root");
 
-    #
-    # TODO mount root directory
-    #
+    # mount root directory
+    foreach (@{$config->{partitions}}) {
+        if ($_->{mountPoint} eq '/') {
+            last;
+        }
+    }
 
     #
     # TODO mount other dirs
