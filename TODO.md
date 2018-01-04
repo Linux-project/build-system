@@ -26,6 +26,7 @@ we may use `perl -e` during checking command line options here.
 ## mount
 
   * Add `mount_opts` field to `fs`
+  * Check `mkdir` for root directory.
 
 ## Documentation
 
