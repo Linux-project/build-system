@@ -22,7 +22,7 @@ sub make_fs {
         my $mount_point = $config->{partitions}[$idx]->{mountPoint};
         my $loop_device = `losetup -f`;
         $loop_device =~ tr/\r\n//d;
-        my $ret = system("losetup", $loop_device, $image, "-o", $_);
+        my $ret = system("losetup", "-o", $_, $loop_device, $image);
 
         if ($ret != 0) {
             print STDERR "[error] during losetup $Loop_device $image -o $_\n";
@@ -30,7 +30,7 @@ sub make_fs {
             return -1;
         }
 
-        print "[info] formating $mount_point to $fs->{name}\n";
+        print "[info] formating $mount_point to $fs->{name} at $loop_device\n";
         if (!defined($makefs_opts)) {
             $_ = `$makefs_util $loop_device >/dev/null 2>&1`;
         } else {
