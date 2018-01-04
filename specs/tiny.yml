@@ -23,6 +23,7 @@ partitions:
     fs:
       - name: ext4
         format_util: mkfs.ext4
+        fs_opts: noload
 kernel:
 initrd:
 bootloader:
