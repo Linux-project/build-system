@@ -23,6 +23,10 @@ we may use `perl -e` during checking command line options here.
   * Exit if bootable flag is not set.
   * support for GPT partitions
 
+## mount
+
+  * Add `mount_opts` field to `fs`
+
 ## Documentation
 
   * Provide info how to install dependencies for different platforms (Perl-Yaml and etc..)
