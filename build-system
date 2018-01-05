@@ -102,7 +102,7 @@ if (looks_like_number($root_dir)) {
 #
 # umount all partitions
 #
-umount_partitions($root_dir);
+umount_partitions($mount_points);
 
 #
 # delete loop devices
