@@ -14,6 +14,7 @@
 
 ## build-system
 
+  * add ls command to inspec image.
   * add `-d,--debug` and print `Content of part file` if it was passed.
   * add `-v/--verbose`
   * add `--no-color`
