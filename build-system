@@ -40,6 +40,12 @@ my $mount_points = '';
 # path to root dir of a created disk
 my $root_dir = '';
 
+# standard directories noted in FHS 3.0
+my @fhs = ("/bin", "/dev", "/etc", "/lib",
+           "/root", "/sys", "/tmp", "/sbin",
+           "/var", "/var/run", "/usr", "/usr/bin",
+           "/usr/include", "/usr/lib", "/usr/share");
+
 GetOptions(
     "spec=s" => \$spec,
     "help" => \$help,
@@ -97,6 +103,14 @@ $root_dir = mount_partitions($spec_data, $image, $mount_points);
 if (looks_like_number($root_dir)) {
     delete_loop_devices($image);
     exit 1;
+}
+
+#
+# provision FHS directories
+#
+print "[info] create file system hierarchy\n";
+foreach (@fhs) {
+    mkdir($root_dir . $_);
 }
 
 #
