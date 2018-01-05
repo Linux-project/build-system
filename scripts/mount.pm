@@ -64,7 +64,6 @@ sub mount_partitions {
     # TODO mount other directories
     #
 
-    # TODO return path to root
     return $root_dir;
 }
 
