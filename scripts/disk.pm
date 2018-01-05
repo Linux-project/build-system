@@ -12,9 +12,6 @@ use Data::UUID;
 use Data::Dumper;
 use File::Basename;
 
-# Global exit status
-my $exit_status = 0;
-
 sub gen_disk_name {
     my $spec_name = shift;
     my $uuid = Data::UUID->new;
@@ -64,16 +61,16 @@ sub init_disk() {
         close($meta_fd);
 
         # create image
-        $exit_status = system("qemu-img", "create",
-                              "-f", $image_format,
-                              $image_dir . "/" . $image_name,
-                              $image_size, "-q");
+        system("qemu-img", "create",
+               "-f", $image_format,
+               $image_dir . "/" . $image_name,
+               $image_size, "-q");
 
-        if ($exit_status != 0) {
+        if ($? != 0) {
             print STDERR "Error: something going wrong during disk creation\n";
             print STDERR "Probably disk options are wrong. Try to run manually:\n\n";
             print STDERR "  qemu-img create -f $image_format " . $image_dir . "/" . $image_name . " $image_size\n";
-            exit $exit_status;
+            exit $?;
         }
 
         print "[info] raw image created: " . $image_dir . "/" . $image_name . "\n";
