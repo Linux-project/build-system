@@ -3,6 +3,7 @@
 #
 # Github: https://github.com/0xAX/kernel-dev/tree/master/kernel-testing
 
+use File::Copy;
 use Data::Dumper;
 
 sub process_local_initrd {
@@ -17,6 +18,8 @@ sub process_local_initrd {
     }
 
     # put initramfs image to /boot directory
+    print "[info] copying $initrd_path to $root/boot";
+    copy($initrd_path, $root . "/boot");
 }
 
 sub process_docker_initrd {
