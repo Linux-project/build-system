@@ -52,6 +52,27 @@ GetOptions(
     "version" => \$version)
     or die("Wrong set of command line arguments were passed\n");
 
+my $args = @ARGV;
+
+if ($args == 0) {
+    $help = 1;
+}
+
+if ($help == 1) {
+    print "Usage:\n";
+    print "  build-system [opts]\n";
+    print "Options:\n";
+    print "  -s/--spec - provide yaml specification\n";
+    print "  -h/--hlpe - print this help message\n";
+    print "  -v/--version - print version of build-system\n";
+    exit 0;
+}
+
+if ($version == 1) {
+    print "build-system 0.0.1\n";
+    exit 0;
+}
+
 if ($spec eq '') {
     print STDERR "Error: specification must be provided\n";
     exit 1;
