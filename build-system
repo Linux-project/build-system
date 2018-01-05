@@ -138,6 +138,11 @@ foreach (@fhs) {
 }
 
 #
+# provision initramfs image
+#
+provision_initramfs($spec_data, $root_dir);
+
+#
 # umount all partitions
 #
 umount_partitions($mount_points);
