@@ -32,7 +32,7 @@ sub init_disk() {
     my $image_size = '10G';
     my $image_format = 'raw';
 
-    die "Error: mandatory field in specification is missed - disk."
+    die "[error] mandatory field in specification is missed - disk."
         unless defined($disk_arg->{disk});
     my $disk = $disk_arg->{disk};
 
@@ -67,7 +67,7 @@ sub init_disk() {
                $image_size, "-q");
 
         if ($? != 0) {
-            print STDERR "Error: something going wrong during disk creation\n";
+            print STDERR "[error] something going wrong during disk creation\n";
             print STDERR "Probably disk options are wrong. Try to run manually:\n\n";
             print STDERR "  qemu-img create -f $image_format " . $image_dir . "/" . $image_name . " $image_size\n";
             exit $?;
