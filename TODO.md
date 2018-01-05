@@ -8,6 +8,10 @@
   * Build linux-next
   * Build linux kernel with dtrace support
 
+## configuration
+
+  * add `arch` field
+
 ## build-system
 
   * add `-d,--debug` and print `Content of part file` if it was passed.
