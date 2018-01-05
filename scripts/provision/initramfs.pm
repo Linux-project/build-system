@@ -18,7 +18,7 @@ sub process_local_initrd {
     }
 
     # put initramfs image to /boot directory
-    print "[info] copying $initrd_path to $root/boot";
+    print "[info] copying $initrd_path to $root/boot\n";
     copy($initrd_path, $root . "/boot");
 }
 
