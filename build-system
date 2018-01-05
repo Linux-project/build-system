@@ -41,7 +41,7 @@ my $mount_points = '';
 my $root_dir = '';
 
 # standard directories noted in FHS 3.0
-my @fhs = ("/bin", "/dev", "/etc", "/lib",
+my @fhs = ("/bin", "/dev", "/etc", "/lib", "/lib64"
            "/root", "/sys", "/tmp", "/sbin",
            "/var", "/var/run", "/usr", "/usr/bin",
            "/usr/include", "/usr/lib", "/usr/share");
