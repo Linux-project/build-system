@@ -100,6 +100,11 @@ if (looks_like_number($root_dir)) {
 }
 
 #
+# umount all partitions
+#
+umount_partitions($root_dir);
+
+#
 # delete loop devices
 #
 delete_loop_devices($image);

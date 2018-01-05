@@ -6,6 +6,24 @@
 
 use Data::Dumper;
 
+sub umount_partitions {
+    my $root_dir = basename(shift);
+
+    my $mounted_fs = `mount | grep $root_dir`;
+
+    if ($mounted_fs ne "") {
+        my @mounted_fs = split /\n/, $mounted_fs;
+        foreach (@mounted_fs) {
+            $_ =~ s/\s.*//;
+            my $ret = system("umount", $_);
+
+            if ($ret != 0) {
+                print STDERR "[error] something going wrong during umount of $_";
+            }
+        }
+    }
+}
+
 sub mount_partitions {
     my $config = shift;
     my $image = shift;
@@ -29,7 +47,8 @@ sub mount_partitions {
         if ($_->{mountPoint} eq '/') {
             my $fs_type = $_->{fs}[0]->{name};
 
-            #$_ = `mount -t $fs_type $root_device $root_dir`;
+            print "[info] mount / partition to $root_device with $fs_type fs\n";
+            $_ = `mount -t $fs_type $root_device $root_dir >/dev/null 2>&1`;
 
             if ($? != 0) {
                 print STDERR "[error] mount of $root_device to $root_dir failed\n";
