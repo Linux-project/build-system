@@ -48,21 +48,24 @@ sub mount_partitions {
             my $fs_type = $_->{fs}[0]->{name};
 
             print "[info] mount / partition to $root_device with $fs_type fs\n";
-            $_ = `mount -t $fs_type $root_device $root_dir >/dev/null 2>&1`;
+            my $ret = `mount -t $fs_type $root_device $root_dir >/dev/null 2>&1`;
 
             if ($? != 0) {
                 print STDERR "[error] mount of $root_device to $root_dir failed\n";
                 print STDERR "Try to execute mount -t $fs_type $root_device $root_dir manually\n";
                 return -1;
             }
-            
+
             last;
         }
     }
 
-    #
-    # TODO mount other directories
-    #
+    # mount other directories
+    foreach (@{$config->{partitions}}) {
+        if ($_->{mountPoint} eq '/') {
+            next;
+        }
+    }
 
     return $root_dir;
 }
