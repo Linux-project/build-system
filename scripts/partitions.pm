@@ -42,7 +42,7 @@ sub size_to_sectors {
         return $part_size;
     }
     else {
-        print STDERR "Error: wrong partition size - $part_size\n";
+        print STDERR "[error] wrong partition size - $part_size\n";
         exit 1;
     }
 }
@@ -58,7 +58,7 @@ sub create_partitions() {
     my $label_id = join '' => map $hex_set[rand @hex_set], 1 .. 8;
     my $partition_spec = "/tmp/" . basename($image) . ".part";
 
-    die "Error: mandatory field in specification is missed - partitions."
+    die "[error] mandatory field in specification is missed - partitions."
         unless defined($config->{partitions});
     my $partitions = $config->{partitions};
 
@@ -71,7 +71,7 @@ sub create_partitions() {
 
     # create tmp files with partitions list
     open my $part_fd, '+>>', $partition_spec
-        or die("Error: can't create spec file for partitions");
+        or die("[error] can't create spec file for partitions");
 
     # write partitions header
     print $part_fd "label: dos\n";
