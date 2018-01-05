@@ -7,25 +7,38 @@
 use Data::Dumper;
 
 sub umount_partitions {
+    my $ret = '';
     my $partitions = shift;
     my %partitions = %{$partitions};
+    my $root_device= $partitions{"/"};
 
     while (($k, $v) = each (%partitions)) {
+        # we will umount root at the end
         if ($k eq "/") {
             next;
         }
 
+        # no need to umount non-exists device
+        $ret = `mount | grep $v`;
+        if ($ret eq '') {
+            next;
+        }
+
         print "[info] umount $k binded to $v\n";
-        my $ret = system("umount", $v);
+        $ret = system("umount", $v);
         if ($ret != 0) {
             print STDERR "[error] something going wrong during umount of $k binded to $v\n";
         }
     }
 
-    my $root_device= $partitions{"/"};
+    # no need to umount non-exists device
+    $ret = `mount | grep $root_device`;
+    if ($ret eq '') {
+        return;
+    }
 
     print "[info] umount / binded to $root_device\n";
-    my $ret = system("umount", $root_device);
+    $ret = system("umount", $root_device);
     if ($ret != 0) {
         print STDERR "[error] something going wrong during umount of / binded to $root_device\n";
     }
@@ -36,6 +49,7 @@ sub mount_partitions {
     my $image = shift;
     my $partitions = shift;
     my %partitions = %{$partitions};
+    my $root_device = $partitions{'/'};
     my $image_name = basename($image);
     my $root_dir = dirname($image) . "/$image_name-root";
 
@@ -44,7 +58,8 @@ sub mount_partitions {
         return -1;
     }
 
-    my $root_device = $partitions{'/'};
+    # umount all partitions related to build-system at the beginning
+    umount_partitions($partitions);
 
     # create root directory
     mkdir($root_dir);

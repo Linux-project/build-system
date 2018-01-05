@@ -15,6 +15,9 @@ sub make_fs {
     my $disk_info = `sfdisk -d $image`;
     my @partitions = ($disk_info =~ /start\=\s+([0-9]*),/g);
 
+    # clear all build-system related loop devices before binding
+    delete_loop_devices($image);
+
     foreach (@partitions) {
         my $fs = $config->{partitions}[$idx]->{fs}[0];
         my $makefs_util = $fs->{format_util};
