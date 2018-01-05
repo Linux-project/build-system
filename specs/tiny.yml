@@ -8,21 +8,21 @@ partitions:
     size: 1GB
     type: 0c
     fs:
-      - name: fat32
+      - name: vfat
         format_util: mkfs.vfat
         format_util_opts: -F 32
   - mountPoint: /
     size: 5GB
     type: 83
     fs:
-      - name: ext4
-        format_util: mkfs.ext4
+      - name: ext2
+        format_util: mkfs.ext2
   - mountPoint: /home
     size: 4GB
     type: 83
     fs:
-      - name: ext4
-        format_util: mkfs.ext4
+      - name: ext2
+        format_util: mkfs.ext2
         fs_opts: noload
 kernel:
 initrd:
