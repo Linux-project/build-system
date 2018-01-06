@@ -15,6 +15,7 @@ use Scalar::Util qw(looks_like_number);
 
 use constant OUTPUT_DIR => "./_output";
 
+require "./scripts/provision/kernel.pm";
 require "./scripts/provision/initramfs.pm";
 
 require "./scripts/disk.pm";
@@ -141,6 +142,11 @@ foreach (@fhs) {
 # provision initramfs image
 #
 provision_initramfs($spec_data, $root_dir);
+
+#
+# provision kernel image
+#
+provision_kernel($spec_data, $root_dir);
 
 #
 # umount all partitions

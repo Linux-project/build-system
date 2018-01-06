@@ -25,6 +25,8 @@ partitions:
         format_util: mkfs.ext2
         fs_opts: noload
 kernel:
+  type: local
+  path: /home/alex/dev/linux
 initrd:
   type: local
   path: initrds/x86_64/initrd_x86_64.cpio.gz
