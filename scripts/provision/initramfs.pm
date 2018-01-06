@@ -23,14 +23,9 @@ sub process_local_initrd {
     copy($initrd_path, $root . "/boot");
 }
 
-sub process_docker_initrd {
-    my $root = shift;
-}
-
 sub provision_initramfs {
     my $config = shift;
     my $root = shift;
-    my $type = '';
 
     die "[error] mandatory field in specification is missed - initrd."
         unless defined($config->{initrd});
@@ -38,16 +33,22 @@ sub provision_initramfs {
     my $initrd = $config->{initrd};
 
     if (!defined($initrd->{type})) {
-        $type = 'local';
-    } else {
-        $type = $initrd->{type};
-    }
-
-    if ($type eq 'local') {
         return process_local_initrd($root, $initrd);
     }
-    elsif ($type eq 'docker') {
-        return process_docker_initrd($root, $initrd);        
+    elsif ($initrd->{type} eq 'local') {
+        return process_local_initrd($root, $initrd);
+    }
+    elsif ($initrd->{type} eq 'dracut') {
+        print STDERR "[error] dracut initramfs is not supported for now\n";
+        return -1;
+    }
+    elsif ($initrd->{type} eq 'docker') {
+        print STDERR "[error] docker initramfs is not supported for now\n";
+        return -1;
+    }
+    else {
+        print STDERR "[error] not supported type of initramfs - $initrd->{type}\n";
+        return -1;
     }
 }
 
