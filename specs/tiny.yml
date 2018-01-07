@@ -1,3 +1,4 @@
+arch: x86_64
 disk:
   name: "tiny.img"
   size: 10G
