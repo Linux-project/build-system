@@ -42,6 +42,8 @@ my $partitions_spec = '';
 my $mount_points = '';
 # path to root dir of a created disk
 my $root_dir = '';
+# machine architecture
+my $arch = '';
 
 # standard directories noted in FHS 3.0
 my @fhs = ("/bin", "/dev", "/etc", "/lib", "/lib64",
@@ -97,6 +99,13 @@ $spec_data = do {local $/; <$spec_fd>};
 
 # load and parse yaml specification
 $spec_data = YAML::Load($spec_data);
+
+# get architecture
+if (!defined($spec_data->{arch})) {
+    $arch = 'x86_64';
+} else {
+    $arch = $spec_data->{arch};
+}
 
 #
 # create new disk if need
