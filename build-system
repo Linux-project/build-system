@@ -17,6 +17,7 @@ use constant OUTPUT_DIR => "./_output";
 
 require "./scripts/provision/kernel.pm";
 require "./scripts/provision/initramfs.pm";
+require "./scripts/provision/bootloader.pm";
 
 require "./scripts/disk.pm";
 require "./scripts/partitions.pm";
@@ -36,8 +37,6 @@ my $version = '';
 my $img_dir = '';
 # path to image
 my $image = '';
-# path to partitions specification
-my $partitions_spec = '';
 # result from some specific routines
 my $mount_points = '';
 # path to root dir of a created disk
@@ -118,7 +117,7 @@ if (!defined($spec_data->{arch})) {
 if (is_disk_partitioned($image) == 1) {
     print STDOUT "Warning: disk $image is already partitioned\n";
 } else {
-    $partitions_spec = create_partitions($spec_data, $image);
+    create_partitions($spec_data, $image);
 }
 
 #
@@ -156,6 +155,13 @@ provision_initramfs($spec_data, $root_dir);
 # provision kernel image
 #
 provision_kernel($spec_data, $root_dir);
+
+#
+# install bootloader if need
+#
+if (defined($spec_data->{bootloader})) {
+    provision_bootlader($spec_data, $mount_points, $root_dir);
+}
 
 #
 # umount all partitions
