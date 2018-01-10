@@ -23,6 +23,11 @@ we may use `perl -e` during checking command line options here.
   * support `-o/--output-dir` command line option;
   * provide `--update-cofnigs` options to update `kernel-configs`.
 
+## bootloader
+
+  * Support images without bootloader, but use `-kernel` and other command
+line arguments of qemu.
+
 ## partitions
 
   * Exit if bootable flag is not set.
