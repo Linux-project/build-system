@@ -13,6 +13,7 @@ TODO
   * [sfdisk](https://linux.die.net/man/8/sfdisk)
   * [losetup](https://linux.die.net/man/8/losetup)
   * [mount](https://en.wikipedia.org/wiki/Mount_(Unix))
+  * [docker](https://www.docker.com/)
 
 Perl libraries:
 
