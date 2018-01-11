@@ -15,6 +15,8 @@ use Scalar::Util qw(looks_like_number);
 
 use constant OUTPUT_DIR => "./_output";
 
+require "./scripts/containers.pm";
+
 require "./scripts/provision/kernel.pm";
 require "./scripts/provision/initramfs.pm";
 require "./scripts/provision/bootloader.pm";
