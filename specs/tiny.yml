@@ -31,4 +31,4 @@ kernel:
 initrd:
   type: local
   path: initrds/x86_64/initrd_x86_64.cpio.gz
-bootloader:
+bootloader: a

@@ -2,7 +2,7 @@
 #
 # The build-system is Copyright (C) 2017 Alexander Kuleshov <kuleshovmail@gmail.com>,
 #
-# Github: https://github.com/0xAX/kernel-dev/tree/master/kernel-testing
+# Github: https://github.com/0xAX/build-system
 
 use strict;
 
@@ -54,6 +54,12 @@ sub provision_bootlader {
     `mkdir -p dev && mount -o bind /dev $dir/dev`;
     `mkdir -p sys && mount -t sysfs sys $dir/sys`;
 
+    `DESTDIR=$dir make -C /home/alex/dev/systemd install`;
+    my $a = `ls $dir`;
+    print $a;
+    $a = `ls $dir/usr/lib`;
+    print $a;
+
     # switch to new root
     if (fork()) {
         wait;
@@ -64,7 +70,6 @@ sub provision_bootlader {
         #
         # TODO provision bootloader from docker image
         #
-        
         exit 0;
     }
 

@@ -2,7 +2,7 @@
 #
 # The build-system is Copyright (C) 2017 Alexander Kuleshov <kuleshovmail@gmail.com>,
 #
-# Github: https://github.com/0xAX/kernel-dev/tree/master/kernel-testing
+# Github: https://github.com/0xAX/build-system
 
 use strict;
 use warnings "all";
